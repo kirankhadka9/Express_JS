@@ -1,0 +1,10 @@
+firstRouter.route("/") // This represents the route for localhost:8000
+  .post((req, res) => {
+    // Handle the POST request for the specified route
+    res.json("home post") // Respond with a JSON message "home post"
+    res.json("home post1")
+  })
+
+Cannot set headers after they are sent to the client
+    at new NodeError
+

@@ -1,45 +1,32 @@
 import { Router } from "express";
 
+// Create an instance of the Express Router
 let firstRouter = Router();
 
-firstRouter
-  .route("/") // localhost:8000
-  .post((req, res) => {
-    // console.log(req.body);
-    console.log(req.query);
-    res.json("home post");
-  })
-  .get((req, res) => {
-    res.json("home get");
-  })
-  .patch((req, res) => {
-    res.json("home patch");
-  })
-  .delete((req, res) => {
-    res.json("home delete");
-  });
 
-firstRouter
-  .route("/name") // localhost:8000/name
-  .post((req, res) => {
-    res.json("name post");
-  });
-
-firstRouter
-  // here we have
-  // static route parameter they are product,a
-  // dynamic  route parameter they are name ,b (in place of dynamic route parameter we can write any)
-  .route("/product/:name/a/:b") // localhost:8000/product/any1/a/any2
-  .post((req, res) => {
-    console.log(req.params);
-    // it gives the dynamic route parameter
-    //{name:"nita",b:"1234"}
-    res.json("i am product");
-  });
+// Define a route for the path "/"
+firstRouter.route("/") // This represents the route for localhost:8000
+  .post((req, res,next) => {
+    // Handle the POST request for the specified route
+     // Respond with a JSON message "home post"
+    req.name="This is Data";
+    req.age=23;
+    req.address="sankhamul";
+    next();
+  },
+  (req,res)=>{
+    console.log(req.name)
+    console.log(req.age)
+    console.log(req.address)
+    res.json("home post")
+  }
+  );
+  export default firstRouter;
+    //A request must have one and only response.
 
 //localhost:8000/name
 
-export default firstRouter;
+
 
 // url=localhost:8000,post at response "home post"
 // url=localhost:8000,get at response "home get"
